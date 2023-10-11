@@ -68,10 +68,15 @@ export class AppController {
       ...data.report[reportIndex],
       ...body
     }
-    return  data.report[reportIndex];
+    return data.report[reportIndex];
   }
   @Delete(':id')
-  deleteReport() {
-    return 'Report Delete';
+  deleteReport(
+    @Param('id') id: string
+  ) {
+    const reportIndex = data.report.findIndex((report) => report.id === id);
+    if (reportIndex === -1) return;
+    data.report.splice(reportIndex,1);
+    return;
   }
 }
